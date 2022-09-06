@@ -32,7 +32,6 @@ object AppModule {
             .addInterceptor(httpLoggingInterceptor)
             .build()
 
-
     @Singleton
     @Provides
     fun apiService(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
