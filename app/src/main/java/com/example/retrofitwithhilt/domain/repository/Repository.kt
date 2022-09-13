@@ -1,9 +1,8 @@
 package com.example.retrofitwithhilt.domain.repository
 
-import com.example.retrofitwithhilt.domain.model.FactModelUi
-import com.example.retrofitwithhilt.utils.Resource
-import kotlinx.coroutines.flow.Flow
+import com.example.retrofitwithhilt.data.remote.model.FactModelDTO
+import retrofit2.Response
 
 interface Repository {
-    suspend fun doNetworkCall(): Flow<Resource<FactModelUi>>
+    suspend fun doNetworkCall(): Response<FactModelDTO>
 }

@@ -5,10 +5,10 @@
     android:id="@+id/main_navigation"
     app:startDestination="@id/factFragment">
 
-
     <fragment
         android:id="@+id/factFragment"
-        android:name="com.example.retrofitwithhilt.ui.facts.FactFragment"
+        android:name="com.example.retrofitwithhilt.presenter.facts.FactFragment"
         android:label="fragment_fact"
         tools:layout="@layout/fragment_fact" />
+
 </navigation>

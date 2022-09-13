@@ -1,4 +1,4 @@
-package com.example.retrofitwithhilt.ui.base
+package com.example.retrofitwithhilt.presenter.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

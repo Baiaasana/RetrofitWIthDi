@@ -1,6 +1,6 @@
 package com.example.retrofitwithhilt.di
 
-import com.example.retrofitwithhilt.data.repository.FactsRepository
+import com.example.retrofitwithhilt.data.remote.repository.FactsRepositoryImpl
 import com.example.retrofitwithhilt.domain.repository.Repository
 import dagger.Binds
 import dagger.Module
@@ -14,7 +14,7 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindRepository(
-        factsRepository: FactsRepository,
+    abstract fun bindFactsRepository(
+        factsRepositoryImpl: FactsRepositoryImpl,
     ): Repository
 }

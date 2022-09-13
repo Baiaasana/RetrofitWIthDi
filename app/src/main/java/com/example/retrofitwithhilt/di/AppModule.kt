@@ -1,6 +1,6 @@
 package com.example.retrofitwithhilt.di
 
-import com.example.retrofitwithhilt.data.remote.ApiService
+import com.example.retrofitwithhilt.data.remote.network.ApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

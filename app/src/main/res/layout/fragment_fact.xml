@@ -1,51 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/purple_200"
-    tools:context=".ui.facts.FactFragment">
+    android:orientation="vertical"
+    tools:context=".presenter.facts.FactFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/facts"
         android:textColor="@color/purple_700"
-        android:layout_marginTop="20dp"
-        android:textSize="36sp"/>
+        android:textSize="36sp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_fact"
         android:layout_width="match_parent"
-        app:cardCornerRadius="10dp"
-        android:layout_marginVertical="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_height="wrap_content">
+        android:layout_marginVertical="30dp"
+        app:cardCornerRadius="10dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_fact"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:hint="@string/random_cat_fact"
             android:padding="10dp"
-            android:layout_gravity="center"
             android:textColor="@color/purple_500"
-            android:textSize="22sp"
-            android:gravity="center"/>
+            android:textSize="22sp" />
 
     </androidx.cardview.widget.CardView>
 
-
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"/>
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,16 +54,14 @@
             android:id="@+id/btn_generate"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:textSize="20sp"
             android:layout_gravity="bottom"
-            android:text="@string/generate"
+            android:layout_marginHorizontal="70dp"
             android:layout_marginVertical="20dp"
+            android:text="@string/generate"
             android:textColor="@color/white"
-            android:layout_marginHorizontal="70dp"/>
+            android:textSize="20sp"
+            app:cornerRadius="25dp" />
 
     </LinearLayout>
-
-
-
 
 </LinearLayout>

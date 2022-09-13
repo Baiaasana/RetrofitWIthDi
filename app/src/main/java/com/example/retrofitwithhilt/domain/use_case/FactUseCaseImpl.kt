@@ -1,21 +1,20 @@
-package com.example.retrofitwithhilt.data.repository
+package com.example.retrofitwithhilt.domain.use_case
 
-import com.example.retrofitwithhilt.data.remote.ApiService
-import com.example.retrofitwithhilt.domain.model.FactModelUi
+import com.example.retrofitwithhilt.domain.model.FactModel
 import com.example.retrofitwithhilt.domain.repository.Repository
-import com.example.retrofitwithhilt.utils.Resource
+import com.example.retrofitwithhilt.utility.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class FactsRepository @Inject constructor(
-    private val api: ApiService,
-) : Repository {
+class FactUseCaseImpl @Inject constructor(
+    private val repository: Repository,
+) : FactUseCase {
 
-    override suspend fun doNetworkCall(): Flow<Resource<FactModelUi>> = flow {
+    override suspend fun invoke(params: Unit): Flow<Resource<FactModel>> = flow {
         try {
             emit(Resource.loading(null))
-            val response = api.getFacts()
+            val response = repository.doNetworkCall()
             val result = response.body()!!.toPresentation()
             if (response.isSuccessful) {
                 emit(Resource.success(result))
