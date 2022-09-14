@@ -1,6 +1,7 @@
 package com.example.retrofitwithhilt.presenter.facts
 
 import android.util.Log.d
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -33,22 +34,13 @@ class FactFragment : BaseFragment<FragmentFactBinding>(FragmentFactBinding::infl
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel1.factFlow.collect {
-                    when (it.status) {
-                        Resource.Status.SUCCESS -> {
-                            val result = (it.data as FactModelDTO)
-                            binding.progressBar.isVisible = false
-                            binding.tvFact.text = result.fact.toString()
-                            d("log", "success")
-                        }
-                        Resource.Status.ERROR -> {
-                            binding.progressBar.isVisible = false
-                            d("log", "error")
-                        }
-                        Resource.Status.LOADING -> {
-                            binding.progressBar.isVisible = true
-                            d("log", "loading")
 
-                        }
+                    binding.apply {
+                        progressBar.isVisible = it.isLoading
+                        tvFact.text = it.data.fact
+                    }
+                    if (it.errorMessage != ""){
+                        Toast.makeText(context, it.errorMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

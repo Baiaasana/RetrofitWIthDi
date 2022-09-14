@@ -1,13 +1,11 @@
 package com.example.retrofitwithhilt.common
 
-import com.example.retrofitwithhilt.data.remote.model.FactModelDTO
-import com.example.retrofitwithhilt.domain.model.FactModel
 import com.example.retrofitwithhilt.utility.Resource
 import retrofit2.Response
 
- abstract class RequestHandler {
+abstract class RequestHandler {
 
-    suspend fun <T: Any> safeApiCall(request: suspend () -> Response<T>): Resource<T> =
+    suspend fun <T : Any> safeApiCall(request: suspend () -> Response<T>): Resource<T> =
 
         try {
             Resource.loading(null)
@@ -21,6 +19,6 @@ import retrofit2.Response
         } catch (e: Exception) {
             Resource.error(e.message.toString())
         }
-    }
+}
 
 
