@@ -1,6 +1,7 @@
 package com.example.retrofitwithhilt.di
 
 import com.example.retrofitwithhilt.data.remote.network.ApiService
+import com.example.retrofitwithhilt.common.RequestHandler
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -51,4 +52,10 @@ object AppModule {
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
+
+//    @Provides
+//    @Singleton
+//    fun requestHandle() : RequestHandler {
+//        return requestHandle()
+//    }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.retrofitwithhilt.data.remote.model.FactModelDTO
 import com.example.retrofitwithhilt.databinding.FragmentFactBinding
 import com.example.retrofitwithhilt.domain.model.FactModel
 import com.example.retrofitwithhilt.presenter.base.BaseFragment
@@ -34,7 +35,7 @@ class FactFragment : BaseFragment<FragmentFactBinding>(FragmentFactBinding::infl
                 viewModel1.factFlow.collect {
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
-                            val result = (it.data as FactModel)
+                            val result = (it.data as FactModelDTO)
                             binding.progressBar.isVisible = false
                             binding.tvFact.text = result.fact.toString()
                             d("log", "success")
