@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.retrofitwithhilt.databinding.FragmentFactBinding
+import com.example.retrofitwithhilt.domain.model.FactModel
 import com.example.retrofitwithhilt.presenter.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,13 +31,14 @@ class FactFragment : BaseFragment<FragmentFactBinding>(FragmentFactBinding::infl
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getFacts()
                 viewModel.factFlow.collect {
-
                     binding.apply {
                         progressBar.isVisible = it.isLoading
-                        tvFact.text = it.data.fact
-                    }
-                    if (it.errorMessage != ""){
-                        Toast.makeText(context, it.errorMessage, Toast.LENGTH_SHORT).show()
+                        if (it.data != null){
+                            tvFact.text = it.data.toString()
+                        }
+                        if (it.errorMessage != ""){
+                            Toast.makeText(context, it.errorMessage, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }

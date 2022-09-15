@@ -4,25 +4,25 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrofitwithhilt.data.remote.model.FactModelDTO
-import com.example.retrofitwithhilt.utility.FactViewState
+import com.example.retrofitwithhilt.domain.model.FactModel
+import com.example.retrofitwithhilt.utility.BaseViewState
 import com.example.retrofitwithhilt.utility.Resource
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel() : ViewModel() {
+abstract class BaseViewModel<T> : ViewModel() {
 
-    val _factFlow = MutableStateFlow<FactViewState>(FactViewState())
+    val _factFlow = MutableStateFlow(BaseViewState<T>())
     val factFlow = _factFlow.asStateFlow()
 
     fun <T> responseHandler(flow: Flow<Resource<T>>) {
 
         viewModelScope.launch {
             val data = flow.collect {
-
                 when (it.status) {
                     Resource.Status.SUCCESS -> {
                         val result = (it.data as FactModelDTO)
-                        _factFlow.value = _factFlow.value.copy(isLoading = false, data = it.data)
+                        _factFlow.value = _factFlow.value.copy(isLoading = false, data = it.data.toPresentation().fact)
                         Log.d("log1", " success - $result")
                     }
                     Resource.Status.ERROR -> {
@@ -39,3 +39,5 @@ abstract class BaseViewModel() : ViewModel() {
         }
     }
 }
+
+

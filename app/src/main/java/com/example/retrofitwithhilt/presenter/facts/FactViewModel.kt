@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrofitwithhilt.common.BaseViewModel
 import com.example.retrofitwithhilt.data.remote.model.FactModelDTO
+import com.example.retrofitwithhilt.domain.model.FactModel
+import com.example.retrofitwithhilt.domain.use_case.FactUseCase
 import com.example.retrofitwithhilt.domain.use_case.FactUseCaseImpl
 import com.example.retrofitwithhilt.utility.FactViewState
 import com.example.retrofitwithhilt.utility.Resource
@@ -16,15 +18,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FactViewModel @Inject constructor(
-    private val factUseCaseImpl: FactUseCaseImpl,
-) : BaseViewModel() {
+    private val factUseCase: FactUseCase,
+) : BaseViewModel<FactModel>() {
 
 //    private val _factFlow = MutableStateFlow<FactViewState>(FactViewState())
 //    val factFlow = _factFlow.asStateFlow()
 
     suspend fun getFacts() {
         resetState()
-        responseHandler(factUseCaseImpl.invoke())
+        return responseHandler(factUseCase.invoke())
 
 //        viewModelScope.launch {
 //            val data = factUseCaseImpl.invoke()
@@ -52,7 +54,7 @@ class FactViewModel @Inject constructor(
     private fun resetState() {
         _factFlow.value = _factFlow.value.copy(
             isLoading = false,
-            data = FactModelDTO("", 0),
+            data = null,
             errorMessage = "",
         )
     }
