@@ -12,11 +12,12 @@ import javax.inject.Inject
 
 class FactsRepositoryImpl @Inject constructor(
     private val api: ApiService,
-) : Repository, RequestHandler() {
+    private val requestHandler: RequestHandler,
+) : Repository {
 
     override suspend fun doNetworkCall(): Flow<Resource<FactModelDTO>> = flow {
         emit(Resource.loading())
-        emit(safeApiCall { api.getFacts() })
+        emit(requestHandler.safeApiCall { api.getFacts() })
 
     }
 }

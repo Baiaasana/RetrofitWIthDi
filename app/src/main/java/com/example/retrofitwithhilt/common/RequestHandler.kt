@@ -3,9 +3,9 @@ package com.example.retrofitwithhilt.common
 import com.example.retrofitwithhilt.utility.Resource
 import retrofit2.Response
 
-abstract class RequestHandler {
+class RequestHandler {
 
-    suspend fun <T : Any> safeApiCall(request: suspend () -> Response<T>): Resource<T> =
+    suspend fun <T> safeApiCall(request: suspend () -> Response<T>): Resource<T> =
 
         try {
             Resource.loading(null)

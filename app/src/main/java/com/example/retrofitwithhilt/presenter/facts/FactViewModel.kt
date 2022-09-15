@@ -25,6 +25,7 @@ class FactViewModel @Inject constructor(
     suspend fun getFacts() {
         resetState()
         responseHandler(factUseCaseImpl.invoke())
+
 //        viewModelScope.launch {
 //            val data = factUseCaseImpl.invoke()
 //            data.collect {

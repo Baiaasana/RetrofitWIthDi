@@ -1,7 +1,6 @@
 package com.example.retrofitwithhilt.common
 
 import android.util.Log
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrofitwithhilt.data.remote.model.FactModelDTO

@@ -8,7 +8,11 @@ import javax.inject.Inject
 
 class FactUseCaseImpl @Inject constructor(
     private val repository: Repository,
-)  {
+) : FactUseCase {
 
-     suspend fun invoke(): Flow<Resource<FactModelDTO>> = repository.doNetworkCall()
+//     suspend fun invoke(): Flow<Resource<FactModelDTO>> = repository.doNetworkCall()
+
+    override suspend fun invoke(): Flow<Resource<FactModelDTO>> {
+        return repository.doNetworkCall()
+    }
 }

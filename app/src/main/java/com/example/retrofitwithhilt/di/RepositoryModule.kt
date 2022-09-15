@@ -17,4 +17,6 @@ abstract class RepositoryModule {
     abstract fun bindFactsRepository(
         factsRepositoryImpl: FactsRepositoryImpl,
     ): Repository
+
+
 }

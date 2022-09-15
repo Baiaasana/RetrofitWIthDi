@@ -53,9 +53,9 @@ object AppModule {
         return retrofit.create(ApiService::class.java)
     }
 
-//    @Provides
-//    @Singleton
-//    fun requestHandle() : RequestHandler {
-//        return requestHandle()
-//    }
+    @Provides
+    @Singleton
+    fun requestHandle() : RequestHandler {
+        return RequestHandler()
+    }
 }
